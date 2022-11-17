@@ -7,15 +7,7 @@ class Node {
 
     public:
 
-        template<typename T>
-        struct Cell {
-            T value;
-            Cell* nextCell  =  nullptr;
-            Node<T>* higherNode  =  nullptr;
-            Node<T>* lowerNode  =  nullptr;
-
-            Cell(T val) : value(val){}
-        };
+        #include "Cell.h"
 
         int sizes = 0;
         bool isleaf  =  true;
@@ -34,13 +26,7 @@ class Node {
         Node<Tp>** split() ;
 
 
-        template<typename T>
-        friend std::ostream& operator<<(std::ostream& os, Node<T>& sq){
-            os << "[  ";
-            for(Cell<T>* i = sq.first; i != nullptr; i = i->nextCell ){ os << i->value << ","; }
-            os << "\b  ]";
-         return os;
-        }
+        #include "NodeOperator.h"
         
 };
 
