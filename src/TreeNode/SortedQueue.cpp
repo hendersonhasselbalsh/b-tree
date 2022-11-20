@@ -18,6 +18,12 @@ void Node<Tp>::insert(Cell<Tp>* newCell)
     return; 
     }
 
+    if( newCell->value < this->first->value ){
+        newCell->nextCell  =  this->first->nextCell;
+        this->first  =  newCell;
+     return;
+    }
+
     if( newCell->value > this->last->value ){  // insert the highest value
         this->last->nextCell  =  newCell;
         this->last  =  newCell;
@@ -34,6 +40,7 @@ void Node<Tp>::insert(Cell<Tp>* newCell)
         next  =  next->nextCell;
     }
 
+    newCell->hasNextCell = true;
     currentCell->nextCell  =  newCell;
     newCell->nextCell  =  next;
 }
@@ -64,6 +71,52 @@ Node<Tp>** Node<Tp>::split(Cell<Tp>** risedCell){
 
  return arrNode;
 }
+
+
+
+template<typename Tp>  // aux - print factory
+Tp* Node<Tp>::keys()
+{
+    Tp* keys  =  new Tp [ this->sizes ];
+    for( unsigned i = 0; i < this->sizes; i++ ){
+        keys[i]  =  this->operator[](i)->value;
+    }
+
+    /*DEBUG*//*
+    std::cout << "[";
+    for(int i = 0; i < this->sizes; i++ ) { std::cout << keys[i] << " ";  }
+    std::cout <<"]";*/
+    /*DEBUG*/
+
+
+ return keys;
+}
+
+
+
+template<typename Tp>  // aux - print factory
+Node<Tp>** Node<Tp>::C()
+{
+    Node<Tp>** nodeArr  =  new Node<Tp>* [ this->sizes + 1 ];
+    unsigned index = 0;
+    Cell<Tp>* i = nullptr;
+
+    for(i = this->first; i->nextCell!=nullptr; i = i->nextCell){
+        nodeArr[index]  =  i->lowerNode;
+        index++;
+    }
+
+    nodeArr[ index ]  =  i->lowerNode;
+    nodeArr[ ++index ]  =  i->higherNode;
+
+ return nodeArr;
+}
+
+
+
+
+
+
 
 
 

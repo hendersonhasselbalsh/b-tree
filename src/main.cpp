@@ -1,53 +1,59 @@
 #include <iostream>
 #include "TreeNode/SortedQueue.h"
+#include "Tree/Btree.h"
+#include "TreePrinter/BTreePrinter.h"
 
 
 int main(int argc, const char** argv)
 {
     
-    Node<int> sq  =  Node<int>();
+    Node<int> root  =  Node<int>();
+    root.insert(7); root.insert(20); root.insert(30);
+    root.isleaf = false;
+
+    Node<int> n1  =  Node<int>();
+    n1.insert(4); n1.insert(5); 
+
+    Node<int> n2  =  Node<int>();
+    n2.insert(11); n2.insert(15); 
+
+    Node<int> n3  =  Node<int>();
+    n3.insert(23); n3.insert(26); 
+    //n3.isleaf  =  false;
+
+    Node<int> n4  =  Node<int>();
+    n4.insert(32); 
+    n4.isleaf = false;
+
+    Node<int> n5  =  Node<int>{};
+    n5.insert(31);
+
+    Node<int> n6  =  Node<int>{};
+    n6.insert(40);
+
+    //----------------------------------
+
+    root[0]->lowerNode  =  &n1;
+
+    root[1]->lowerNode  =  &n2; 
+
+    root[2]->lowerNode  =  &n3;
+    root[2]->higherNode =  &n4;
+
+    n4[0]->lowerNode  =  &n5;
+    n4[0]->higherNode  =  &n6;
+    //------------------------------------------
 
     
-    sq.insert(1);
-    sq.insert(2);
-    sq.insert(3);
-    sq.insert(9);
+    BTree<int> t  =  BTree<int>{};
+    t.root  =  &root;
 
-    Cell<int>* rised  =  new Cell<int>{}; 
+    BTreePrinter printer  =  BTreePrinter();
 
-    Node<int>** arr  =  sq.split( &rised );
-
-
-    std::cout << "[rised]: " << rised->value << "\n\n";
-    std::cout << "[0]: " << arr[0][0] << "\n\n";
-    std::cout << "[1]: " << arr[1][0] << "\n\n";
-
-    std::cout << "TESTE HIGHT : " << rised->higherNode[0] << "\n";
-    std::cout << "TESTE LOW : " << rised->lowerNode[0] << "\n";
-
-    std::cout << "\n[SUCESSO works !-----! ]\n";
-
-    /*
-    Node<int>** t  =  new Node<int>* [2];
-    t[0]  =  new Node<int>{};
-    t[1]  =  new Node<int>{};
+    printer.print( t );
+    
 
 
-    t[0]->insert(1);
-    t[0]->insert(2);
-    t[0]->insert(3);
-    t[0]->insert(4);
 
-    t[1]->insert(5);
-    t[1]->insert(6);
-    t[1]->insert(7);
-    t[1]->insert(8);
-
-    std::cout << t[0][0] << "\n\n";
-    std::cout << t[1][0] << "\n\n";
-
-
-    std::cout << "\n[SUCESSO !!-!! ]\n";
-    */
-
+    std::cout << "\n\n\n[SUCESSO - !----!]\n";
 }

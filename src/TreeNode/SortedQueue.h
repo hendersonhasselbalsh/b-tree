@@ -11,6 +11,7 @@ struct Cell {
     Cell* nextCell  =  nullptr;
     Node<T>* higherNode  =  nullptr;
     Node<T>* lowerNode  =  nullptr;
+    bool hasNextCell  =  false;
 
     Cell(){}
     Cell(T val) : value(val){}
@@ -23,14 +24,14 @@ struct Cell {
 template<typename Tp>
 class Node {
 
-    private:
+    public:
 
         unsigned sizes = 0;
         bool isleaf  =  true;
         Cell<Tp>* first  =  nullptr;
         Cell<Tp>* last  =  nullptr;
         unsigned nodeLenght  =  0;
-
+        
 
     public:
         Node(){}
@@ -38,6 +39,8 @@ class Node {
 
         template<typename T>
         friend std::ostream& operator<<(std::ostream& os, Node<T>& sq);
+
+        Cell<Tp>* operator[](int i);
         
         int size(){ return this->sizes; }
         bool isLeaf(){ return this->isleaf; }
@@ -47,6 +50,9 @@ class Node {
         void insert(Cell<Tp>* newCell);
 
         Node<Tp>** split(Cell<Tp>** risedCell); // 
+
+        Tp* keys();
+        Node<Tp>** C();
 
 };
 
