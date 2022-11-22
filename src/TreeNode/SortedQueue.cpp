@@ -22,6 +22,8 @@ void Node<Tp>::insert(Cell<Tp>* newCell, Cell<Tp>** risedCell)
         newCell->nextCell  =  this->first;
         this->first  =  newCell;
         newCell->hasNextCell = true;
+        this->first->nextCell->lowerNode = newCell->higherNode;
+        newCell->higherNode = nullptr;
         //this->operator[](1)->lowerNode = newCell->lowerNode;
      return;
     }
@@ -47,6 +49,9 @@ void Node<Tp>::insert(Cell<Tp>* newCell, Cell<Tp>** risedCell)
 
     currentCell->nextCell  =  newCell;
     newCell->nextCell  =  next;
+
+    next->lowerNode  =  newCell->higherNode;
+    newCell->higherNode = nullptr;
 }
 
 

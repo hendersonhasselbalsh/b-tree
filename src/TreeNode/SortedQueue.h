@@ -33,7 +33,6 @@ class Node {
     public:
 
         //unsigned sizes = 0;
-        bool isleaf  =  true;
         Cell<Tp>* first  =  nullptr;
         Cell<Tp>* last  =  nullptr;
         unsigned nodeLenght  =  0;

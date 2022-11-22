@@ -38,6 +38,23 @@ int main(int argc, const char** argv)
     std::cout << "\n-------------------------------------------\n\n";
     
 
+    t.insert(4);
+    printer.print( t );
+    std::cout << "\n-------------------------------------------\n\n";
+
+
+    t.insert(5);
+    printer.print( t );
+    std::cout << "\n-------------------------------------------\n\n";
+
+
+    t.insert(6);
+    printer.print( t );
+    std::cout << "\n-------------------------------------------\n\n";
+
+    t.insert(8);
+    printer.print( t );
+    std::cout << "\n-------------------------------------------\n\n";
 
 
 
