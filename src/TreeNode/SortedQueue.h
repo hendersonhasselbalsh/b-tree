@@ -15,18 +15,24 @@ struct Cell {
 
     Cell(){}
     Cell(T val) : value(val){}
+
+    bool hasChildren(){ return bool(lowerNode!=nullptr); }
 };
 
 
 
-
+/*
+  node = {  a   ->    b   ->    c  }
+          /          /         / \
+         n1         n2        n3  n4              
+*/
 
 template<typename Tp>
 class Node {
 
     public:
 
-        unsigned sizes = 0;
+        //unsigned sizes = 0;
         bool isleaf  =  true;
         Cell<Tp>* first  =  nullptr;
         Cell<Tp>* last  =  nullptr;
@@ -42,12 +48,14 @@ class Node {
 
         Cell<Tp>* operator[](int i);
         
-        int size(){ return this->sizes; }
-        bool isLeaf(){ return this->isleaf; }
+        int size();
+        bool isLeaf();
         bool isEmpty(){ return bool(this->first == nullptr); }
+        bool isFull(){ return this->size() > 3; }
+        void checkNodeIsLeaf();
 
         void insert(Tp val){ this->insert( new Cell<Tp>(val) ); }
-        void insert(Cell<Tp>* newCell);
+        void insert(Cell<Tp>* newCell, Cell<Tp>** risedCell = nullptr);
 
         Node<Tp>** split(Cell<Tp>** risedCell); // 
 

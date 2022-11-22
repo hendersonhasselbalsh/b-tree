@@ -6,7 +6,7 @@
 #include <vector>
 
 #if !defined(HEADER_FILE_ALREADY_INCLIDED)
-    #include "Btree.h"
+    #include "../Tree/Btree.h"
 #endif // HEADER_FILE_ALREADY_INCLIDED
 
 
@@ -60,7 +60,7 @@ void BTreePrinter::visit (Node<int>  *node, unsigned level, unsigned child_index
         info.text_pos = level_info.back().text_end + (child_index == 0 ? 2 : 1);
     }
 
-    info.text = node_text(node->keys(), unsigned(node->sizes));
+    info.text = node_text(node->keys(), unsigned(node->size()));
 
     if (node->isLeaf()){
         info.text_end = info.text_pos + unsigned(info.text.length());
@@ -69,7 +69,7 @@ void BTreePrinter::visit (Node<int>  *node, unsigned level, unsigned child_index
     else // non-leaf -> do all children so that .text_end for the right-most child becomes known
     {
         
-        for (unsigned i = 0, e = unsigned(node->sizes); i <= e; ++i){  // one more pointer than there are keys
+        for (unsigned i = 0, e = unsigned(node->size()); i <= e; ++i){  // one more pointer than there are keys
             visit(node->C()[i], level + 1, i);
         }
 
