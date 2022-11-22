@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <cmath>
 #include "TreeNode/SortedQueue.h"
 #include "Tree/Btree.h"
 #include "TreePrinter/BTreePrinter.h"
@@ -11,80 +13,19 @@ int main(int argc, const char** argv)
     BTreePrinter printer{};
 
 
+    for( int i = 0; i < 30; i++ ){
 
+        int toBeInsertedNumber  =  std::abs( std::rand() % 10000 );
+        std::cout << "#### inserting " << toBeInsertedNumber << "\n\n";
 
+        t.insert( toBeInsertedNumber );
+        printer.print( t );
+        std::cout << "\n-----------------------------------\n\n";
 
-    t.insert(1); 
-    t.insert(2); 
-    t.insert(3); 
-    std::cout << "\n\n-------------------------------\n\n";
-    //printer.print( t );
+    }
 
-    std::cout << "\n\n-------------------------------\n\n";
 
     
-
-    t.insert(4);    
-    //printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-        
-
-
-    t.insert(5);    
-    //printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-
-        
-    t.insert(6);    
-    //printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-
-
-    t.insert(7);    
-    ////printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-
-
-    t.insert(8);    
-    //printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-
-
-    t.insert(9);    
-    printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-    t.insert(11);    
-    printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-
-/*
-    t.insert(11);    
-    printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-
-
-    t.insert(12);    
-    printer.print( t );
-
-    std::cout << "\n\n-------------------------------\n\n";
-
-*/
 
     std::cout << "\n\n\n[SUCESSO - !-- ^^ --!]\n";
 
