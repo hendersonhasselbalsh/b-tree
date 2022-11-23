@@ -21,7 +21,6 @@ void Node<Tp>::insert(Cell<Tp>* newCell, Cell<Tp>** risedCell)
     if( newCell->value < this->first->value ){
         newCell->nextCell  =  this->first;
         this->first  =  newCell;
-        newCell->hasNextCell = true;
         this->first->nextCell->lowerNode = newCell->higherNode;
         newCell->higherNode = nullptr;
         //this->operator[](1)->lowerNode = newCell->lowerNode;
@@ -31,7 +30,6 @@ void Node<Tp>::insert(Cell<Tp>* newCell, Cell<Tp>** risedCell)
     if( newCell->value > this->last->value ){  // insert the highest value
         this->last->nextCell  =  newCell;
         this->last  =  newCell;
-        newCell->hasNextCell = false;
         //this->last->lowerNode  =  this->operator[](this->sizes-2);
      return;
     }
@@ -44,8 +42,6 @@ void Node<Tp>::insert(Cell<Tp>* newCell, Cell<Tp>** risedCell)
         currentCell  =  next;
         next  =  next->nextCell;
     }
-
-    newCell->hasNextCell = true;
 
     currentCell->nextCell  =  newCell;
     newCell->nextCell  =  next;

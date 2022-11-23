@@ -11,7 +11,7 @@ struct Cell {
     Cell* nextCell  =  nullptr;
     Node<T>* higherNode  =  nullptr;
     Node<T>* lowerNode  =  nullptr;
-    bool hasNextCell  =  false;
+    bool hasNextCell(){ return bool( this->nextCell != nullptr ); }
 
     Cell(){}
     Cell(T val) : value(val){}
@@ -22,6 +22,7 @@ struct Cell {
 
 
 /*
+      cell ¬    cell ¬    cell ¬             
   node = {  a   ->    b   ->    c  }
           /          /         / \
          n1         n2        n3  n4              

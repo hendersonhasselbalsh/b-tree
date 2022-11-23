@@ -79,7 +79,32 @@ Cell<Tp>* BTree<Tp>::insert( Tp val, Node<Tp>* node, bool* shouldInsert )
 }
 
 
+template<typename Tp>
+Tp* BTree<Tp>::get(Tp val)
+{
+    Tp* obj = nullptr;
+    Cell<Tp>* currentCell = this->root->first;
 
+    while( true ){
+        if(currentCell == nullptr){ break; }
+
+        if( val == currentCell->value ){  
+            obj  =  &currentCell->value;
+            break;
+        }
+        else if( val < currentCell->value ) {
+            currentCell  =  currentCell->lowerNode->first;
+        }
+        else if( val > currentCell->value && currentCell->hasNextCell() ){
+            currentCell = currentCell->nextCell;
+        }
+        else if( val > currentCell->value && !currentCell->hasNextCell() ){
+            currentCell = currentCell->higherNode->first;
+        }
+    }
+
+ return obj;
+}
 
 
 
