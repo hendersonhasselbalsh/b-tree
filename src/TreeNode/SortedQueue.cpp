@@ -43,6 +43,8 @@ void Node<Tp>::insert(Cell<Tp>* newCell, Cell<Tp>** risedCell)
         next  =  next->nextCell;
     }
 
+    if( next->value == newCell->value ){  break;  }
+
     currentCell->nextCell  =  newCell;
     newCell->nextCell  =  next;
 
